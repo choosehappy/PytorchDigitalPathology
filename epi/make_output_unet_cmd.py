@@ -122,7 +122,7 @@ for fname in files:
     output = np.zeros((0,checkpoint["n_classes"],patch_size,patch_size))
     for batch_arr in divide_batch(arr_out,batch_size):
         
-        arr_out_gpu = torch.from_numpy(batch_arr.transpose(0, 3, 1, 2) / 255).cuda(device).type('torch.cuda.FloatTensor')
+        arr_out_gpu = torch.from_numpy(batch_arr.transpose(0, 3, 1, 2) / 255).type('torch.FloatTensor').cuda(device)
 
         # ---- get results
         output_batch = model(arr_out_gpu)
