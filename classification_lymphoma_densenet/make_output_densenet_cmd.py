@@ -1,5 +1,5 @@
-#v3.classification
-#3/12/2018
+# v3.classification
+# 3/12/2018
 
 import argparse
 import os
@@ -83,7 +83,7 @@ elif args.input_pattern[0].endswith("tsv"):  # user sent us an input file
 else:  # user sent us a wildcard, need to use glob to find files
     files = glob.glob(args.basepath + args.input_pattern[0])
 
-    
+
 # ------ work on files
 for fname in files:
 
