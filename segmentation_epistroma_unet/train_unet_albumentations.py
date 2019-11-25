@@ -255,8 +255,11 @@ for epoch in range(num_epochs):
                     p=prediction[:,:,:,:].detach().cpu().numpy()
                     cpredflat=np.argmax(p,axis=1).flatten()
                     yflat=y.cpu().numpy().flatten()
-
-                    cmatrix[phase]=cmatrix[phase]+confusion_matrix(yflat,cpredflat,labels=range(n_classes))
+                    CM = scipy.sparse.coo_matrix((np.ones(yflat.shape[0], dtype=np.int64), (yflat, cpredflat)),
+                            shape=(n_classes, n_classes), dtype=np.int64,
+                            ).toarray()
+                    cmatrix[phase]=cmatrix[phase]+CM
+#                    cmatrix[phase]=cmatrix[phase]+confusion_matrix(yflat,cpredflat,labels=range(n_classes))
 
         all_acc[phase]=(cmatrix[phase]/cmatrix[phase].sum()).trace()
         all_loss[phase] = all_loss[phase].cpu().numpy().mean()
