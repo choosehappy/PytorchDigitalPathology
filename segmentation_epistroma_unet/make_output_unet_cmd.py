@@ -86,7 +86,7 @@ else:  # user sent us a wildcard, need to use glob to find files
 for fname in files:
 
     fname = fname.strip()
-    newfname_class = "%s/%s_class.png" % (OUTPUT_DIR, os.path.basename(fname)[0:-4])
+    newfname_class = "%s/%s_class.png" % (OUTPUT_DIR, os.path.basename(fname)[0:os.path.basename(fname).rfind(".")])
 
     print(f"working on file: \t {fname}")
     print(f"saving to : \t {newfname_class}")
