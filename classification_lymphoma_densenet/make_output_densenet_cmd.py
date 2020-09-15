@@ -120,7 +120,7 @@ for fname in files:
     arr_out = arr_out.reshape(-1,patch_size,patch_size,3)
 
     #in case we have a large network, lets cut the list of tiles into batches
-    output = np.zeros((0,checkpoint["n_classes"]))
+    output = np.zeros((0,checkpoint["num_classes"]))
     for batch_arr in divide_batch(arr_out,batch_size):
         
         arr_out_gpu = torch.from_numpy(batch_arr.transpose(0, 3, 1, 2) / 255).type('torch.FloatTensor').to(device)
