@@ -7,7 +7,7 @@ import glob
 import numpy as np
 import cv2
 import torch
-import sklearn.feature_extraction.image
+from PS_scikitlearn import extract_patches
 
 from unet import UNet
 
@@ -114,7 +114,7 @@ for fname in files:
 
     io = np.pad(io, [(0, npad0), (0, npad1), (0, 0)], mode="constant")
 
-    arr_out = sklearn.feature_extraction.image.extract_patches(io,(patch_size,patch_size,3),stride_size)
+    arr_out = extract_patches(io,(patch_size,patch_size,3),stride_size)
     arr_out_shape = arr_out.shape
     arr_out = arr_out.reshape(-1,patch_size,patch_size,3)
 
